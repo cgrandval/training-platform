@@ -36,7 +36,9 @@ class PoolVideo
      /**
     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Video", mappedBy="poolVideo")
     */
-    private $videos; // Notez le « s », une annonce est liée à plusieurs candidatures
+    private $videos;
+
+
 
 
 
@@ -48,18 +50,20 @@ class PoolVideo
     }
 
 
-
-
-
     /**
     * @param Video $video
     */
     public function addVideo(Video $video)
     {
-        $this->videos[] = $video;
+        $this->videos->add($video);      
+    }
 
-        // On lie l'annonce à la candidature
-        $video->setPoolVideo($this);
+    /**
+    * @return int
+    */
+    public function countVideo()
+    {
+        return $this->videos->count();
     }
 
     /**
@@ -77,12 +81,6 @@ class PoolVideo
     {
         return $this->videos;
     }
-
-
-
-
-
-
 
 
     /**

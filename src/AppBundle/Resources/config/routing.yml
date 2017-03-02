@@ -34,6 +34,31 @@ pool_video_delete:
 
 
 
+video_manage:
+    path: /backend/video
+    defaults:
+        _controller: AppBundle:Backend:manageVideo
+
+video_add:
+    path: /backend/video/add
+    defaults:
+        _controller: AppBundle:Backend:addVideo
+
+video_modif:
+    path: /backend/video/modif/{id}
+    defaults:
+        _controller: AppBundle:Backend:modifVideo
+    requirements:
+        id: '\d+'
+
+video_delete:
+    path: /backend/video/delete/{id}
+    defaults:
+        _controller: AppBundle:Backend:deleteVideo
+    requirements:
+        id: '\d+'
+
+
 
 platform:
     path: /platform
