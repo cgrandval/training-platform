@@ -5,7 +5,7 @@ namespace UserBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use UserBundle\Entity\User;
-use UserBundle\Form\SubscribeType;
+use UserBundle\Form\Type\SubscribeType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class SecurityController extends Controller
