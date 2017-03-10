@@ -8,8 +8,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 use AppBundle\Entity\Response;
-use AppBundle\Form\ResponseType;
-use AppBundle\Form\EditResponseType;
+use AppBundle\Form\Type\ResponseType;
+use AppBundle\Form\Type\EditResponseType;
 
 class BackendResponseController extends Controller
 {
@@ -62,6 +62,10 @@ class BackendResponseController extends Controller
         $response = $em->getRepository('AppBundle:Response')
             ->find($id);
 
+        if (null === $response) {
+            throw new NotFoundHttpException("Error Response with id ".$id." don't exist.");
+        }
+        
         $form = $this->createForm(EditResponseType::class, $response);
 
         if ($request->isMethod('POST')) {
@@ -93,7 +97,7 @@ class BackendResponseController extends Controller
 
         $response = $em->getRepository('AppBundle:Response')->find($id);
 
-        if (null == $response) {
+        if (null === $response) {
             throw new NotFoundHttpException("Error Response with id ".$id." don't exist.");
         }
 

@@ -8,8 +8,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 use AppBundle\Entity\Video;
-use AppBundle\Form\VideoType;
-use AppBundle\Form\EditVideoType;
+use AppBundle\Form\Type\VideoType;
+use AppBundle\Form\Type\EditVideoType;
 
 class BackendVideoController extends Controller
 {
@@ -62,6 +62,10 @@ class BackendVideoController extends Controller
         $video = $em->getRepository('AppBundle:Video')
             ->find($id);
 
+        if (null === $video) {
+            throw new NotFoundHttpException("Error Video with id ".$id." don't exist.");
+        }
+
         $form = $this->createForm(EditVideoType::class, $video);
 
         if ($request->isMethod('POST')) {
@@ -93,7 +97,7 @@ class BackendVideoController extends Controller
 
         $video = $em->getRepository('AppBundle:Video')->find($id);
 
-        if (null == $video) {
+        if (null === $video) {
             throw new NotFoundHttpException("Error Video with id ".$id." don't exist.");
         }
 

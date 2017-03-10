@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 use AppBundle\Entity\PoolQuestion;
-use AppBundle\Form\PoolQuestionType;
+use AppBundle\Form\Type\PoolQuestionType;
 
 class BackendPoolQuestionController extends Controller
 {
@@ -61,7 +61,7 @@ class BackendPoolQuestionController extends Controller
         $poolQuestion = $em->getRepository('AppBundle:PoolQuestion')
             ->find($id);
 
-        if (null == $poolQuestion) {
+        if (null === $poolQuestion) {
             throw new NotFoundHttpException("Error Pool Question with id ".$id." don't exist.");
         }
 
@@ -99,7 +99,7 @@ class BackendPoolQuestionController extends Controller
         $poolQuestion = $em->getRepository('AppBundle:PoolQuestion')
             ->find($id);
 
-        if (null == $poolQuestion) {
+        if (null === $poolQuestion) {
             throw new NotFoundHttpException("Error Pool Question with id ".$id." don't exist.");
         }
 
